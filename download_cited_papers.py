@@ -6,10 +6,12 @@ import time
 import re
 from fuzzywuzzy import fuzz
 import random
+import os
 
 WAIT = 30
 AUTHOR_ID = "h9mjzyYAAAAJ"
 NAME = "Orosz Tamás"
+DOWNLOAD_FOLDER = 'publications'
 filter_pat = re.compile(r"[A-ZÍŰÁÉÚŐÓÜÖ]{1,2}]")
 
 
@@ -18,7 +20,10 @@ filter_pat = re.compile(r"[A-ZÍŰÁÉÚŐÓÜÖ]{1,2}]")
 # scholarly.use_proxy(pg)
 
 def save_json(name, pub):
-    with open("tomi/" + name.replace("/", "_") + ".json", "w", encoding="utf-8") as file:
+    if not os.path.exists(DOWNLOAD_FOLDER):
+        os.makedirs(DOWNLOAD_FOLDER)
+
+    with open(DOWNLOAD_FOLDER + "/" + name.replace(" ", "_") + ".json", "w", encoding="utf-8") as file:
         json.dump(pub, file, ensure_ascii=False, indent=4)
 
 
