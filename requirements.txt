@@ -1,0 +1,4 @@
+scholarly
+fuzzywuzzy
+pandas
+crossrefapi
